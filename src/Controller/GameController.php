@@ -15,6 +15,7 @@ class GameController extends AbstractController {
     private $gameFinished = false;
     private $winner = '-';
     private $difficulty = 1;
+    private $pvp = false;
 
     public function __construct() {
         $this->setGame();
