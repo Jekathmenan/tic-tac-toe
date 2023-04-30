@@ -93,7 +93,6 @@ class GameController extends AbstractController {
         for ($i = 0; $i < 3; $i++) {
             for ($j = 0; $j < 3; $j++) {
                 $curMove = $this->board[$i][$j];
-
                 if ($curMove === '-') {
                     array_push($possibleMoves, [$i, $j]);
                 }
@@ -166,8 +165,6 @@ class GameController extends AbstractController {
             $this->gameFinished = unserialize($gameController['gameEnd']);
             $this->winner = unserialize($gameController['winner']);
         }
-        
-
     }
 
     public function getBoard() {
