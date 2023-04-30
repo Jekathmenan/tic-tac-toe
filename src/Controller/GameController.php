@@ -41,8 +41,33 @@ class GameController extends AbstractController {
             $this->currentPlayer = $this->player1;
         }
     }
-    
-    public function makeMove($x, $y) {
+
+    private function makeMove($x, $y, $player) {
+        $moveMade = false;
+        
+        if ($this->board[$x][$y] === '-') {
+
+            
+            $this->board[$x][$y] = $player;
+            $this->changePlayer(); 
+            $this->moves += 1;
+
+            $moveMade = true;
+        }
+
+        if ($this->moves >=5 && $player1Win = $this->checkWin($this->player1)) {
+            $this->gameFinished = true;
+            $this->winner = $this->player1;
+        } else if ($this->moves >=5 && $player2Win = $this->checkWin($this->player2)) {
+            $this->gameFinished = true;
+            $this->winner = $this->player2;                
+        }
+
+
+        return $moveMade;
+    }
+
+    public function playNextMove($x, $y) {
         if ($x == null || $y == null) { 
             return $this->winner; 
         } 
