@@ -46,7 +46,7 @@ class TicTacToeController extends AbstractController {
 
         
         
-        $winner = $this->gameController->makeMove($arr[0], $arr[1]);
+        $winner = $this->gameController->playNextMove($arr[0], $arr[1]);
         $board = $this->gameController->getBoard();
         $currentPlayer = $this->gameController->getCurrentPlayer();
 
