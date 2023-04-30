@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Tic Tac Toe</h1>
+    <div class="Currentplayer">
+        Aktueller Spieler: {{ currentPlayer }}
+    </div>
+    </br>
+    {% if winner != '-' %}
+        <div class="alert alert-success">
+            <p><strong>Spiel ist zu Ende. {{ winner }} hat gewonnen. </strong></p>
+        </div>
+        </br>
+        </br>
+    {% endif %}
+
+    
+    <form action="{{ path('tic_tac_toe.game') }}" method="post">
+        {% for row in board %}
+        <div>
+            {% for cell in row %}
+            <input style="width:35px; height:35px;margin:5px" type="submit" class="cell" name="{{ loop.parent.loop.index0 }},{{ loop.index0 }}" class="box" value="{{ cell }}" {% if cell != '-' or winner != '-' %} disabled {% endif %} > 
+            {# <input type="text" name="board[{{ loop.parent.loop.index0 }}][{{ loop.index0 }}]" value="{{ cell }}" {% if cell != '-' %} disabled {% endif %} size="1" maxlength="1">#}
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </form>
+
+    {% if winner != '-' %}
+        </br>
+        <a href="{{ path('tic_tac_toe.home') }}">Erneut spielen</a>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/js/tictactoe.js') }}"></script>
+{% endblock %}
