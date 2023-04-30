@@ -2,11 +2,16 @@
 
 {% block body %}
 <h1>Tic Tac Toe</h1>
-    <div class="Currentplayer">
-        Aktueller Spieler: {{ currentPlayer }}
+    {# Displaying Infomessages #}
+    <div class="currentplayer">
+        <strong>Aktueller Spieler: {{ currentPlayer }} </strong> </br> 
+    </div>
+    <div class="gamemode">
+        Spielmodus: {% if pvp %} Spieler gegen Spieler  {% else %} Spieler Gegen künstlicher Intelligenz {% endif %}
     </div>
     </br>
     {% if winner != '-' %}
+        </br>
         <div class="alert alert-success">
             <p><strong>Spiel ist zu Ende. {{ winner }} hat gewonnen. </strong></p>
         </div>
@@ -14,25 +19,26 @@
         </br>
     {% endif %}
 
-    
+    {# Displaying Gameboard #}
     <form action="{{ path('tic_tac_toe.game') }}" method="post">
         {% for row in board %}
         <div>
             {% for cell in row %}
-            <input style="width:35px; height:35px;margin:5px" type="submit" class="cell" name="{{ loop.parent.loop.index0 }},{{ loop.index0 }}" class="box" value="{{ cell }}" {% if cell != '-' or winner != '-' %} disabled {% endif %} > 
-            {# <input type="text" name="board[{{ loop.parent.loop.index0 }}][{{ loop.index0 }}]" value="{{ cell }}" {% if cell != '-' %} disabled {% endif %} size="1" maxlength="1">#}
+                <input style="width:35px; height:35px;margin:5px" type="submit" class="cell" name="{{ loop.parent.loop.index0 }},{{ loop.index0 }}" class="box" value="{{ cell }}" {% if cell != '-' or winner != '-' %} disabled {% endif %} > 
             {% endfor %}
         </div>
         {% endfor %}
     </form>
 
-    {% if winner != '-' %}
-        </br>
-        <a href="{{ path('tic_tac_toe.home') }}">Erneut spielen</a>
-    {% endif %}
+    {# Displaying Restart Button #}
+    </br>
+    <a href="{{ path('tic_tac_toe.home') }}">
+        {% if winner != '-' %}
+            Erneut spielen
+        {% else %}
+            Spiel aufgeben
+        {% endif %}
+    </a>
+    
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('/js/tictactoe.js') }}"></script>
-{% endblock %}
