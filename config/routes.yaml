@@ -7,9 +7,13 @@ kernel:
     type: annotation
 
 tic_tac_toe.home:
-    path: /tic-tac-toe
+    path: /
     controller: App\Controller\TicTacToeController::index
 
+tic_tac_toe.menu:
+    path: /init-game
+    controller: App\Controller\TicTacToeController::initGame
+
 tic_tac_toe.game:
-    path: /tic-tac-toe/play
+    path: /play
     controller: App\Controller\TicTacToeController::play
