@@ -30,13 +30,7 @@ class GameController extends AbstractController {
         $this->player1 = 'X';
         $this->player2 = 'O';
 
-        $rnd = rand(1, 2);
-
-        if ($rnd === 1) {
-            $this->currentPlayer = $this->player1;
-        } else {
-            $this->currentPlayer = $this->player1;
-        }
+        $this->currentPlayer = $this->player1;
     }
 
     private function changePlayer() {
@@ -60,13 +54,10 @@ class GameController extends AbstractController {
                 $this->moves += 1;
             }
             
-            $player1Win = $this->checkWin($this->player1);
-            $player2Win = $this->checkWin($this->player2);
-            
-            if ($this->moves >= 5 && $player1Win) {
+            if ($player1Win = $this->checkWin($this->player1)) {
                 $this->gameFinished = true;
                 $this->winner = $this->player1;
-            } else if ($this->moves >= 5 && $player2Win) {
+            } else if ($player2Win = $this->checkWin($this->player2)) {
                 $this->gameFinished = true;
                 $this->winner = $this->player2;                
             }
@@ -76,7 +67,7 @@ class GameController extends AbstractController {
             }
         }
 
-        if ($this->moves == 9 && $this->winner = '-') {
+        if ($this->moves == 9 && $this->winner == '-') {
             $this->gameFinished = true;
             $this->winner = 'Keiner';
         }
