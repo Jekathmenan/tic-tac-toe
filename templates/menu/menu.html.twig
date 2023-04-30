@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Tic Tac Toe</h1>
+    </br>
+
+    {# Gamemode form #}
+    <form action="{{ path('tic_tac_toe.menu') }}" method="post">
+        <input type="radio" id="ai" name="playertype" value="ai">
+        <label for="ai">Play Against AI</label><br>
+        <input type="radio" id="pvp" name="playertype" value="pvp">
+        <label for="pvp">Play against another Player</label><br>
+        <input type="submit" value="Play Game">
+    </form>
+
+{% endblock %}
