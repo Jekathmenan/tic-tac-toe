@@ -17,10 +17,10 @@ class GameController extends AbstractController {
     private $difficulty = 1;
 
     public function __construct() {
-        $this->resetGame();
+        $this->setGame();
     }
 
-    public function resetGame() {
+    public function setGame() {
         $this->board = [
             ['-', '-', '-'],
             ['-', '-', '-'],
