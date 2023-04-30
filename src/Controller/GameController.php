@@ -116,8 +116,12 @@ class GameController extends AbstractController {
         if ($this->difficulty == 2) {
             $this->letIntelligentAIPlay($possibleMoves);
         } else {
-            $rnd = rand(1, count($possibleMoves));
-            
+            if (count($possibleMoves) > 1) {
+                $rnd = rand(1, count($possibleMoves) -1);
+                $move = $possibleMoves[$rnd];
+
+                $this->makeMove($move[0], $move[1], $this->currentPlayer);
+            }
         }
     }
 
