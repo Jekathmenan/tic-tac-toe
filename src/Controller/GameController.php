@@ -113,7 +113,20 @@ class GameController extends AbstractController {
     }
 
     private function letIntelligentAIPlay($possibleMoves) {
-        
+        // to do: Intelligent AI Logic
+    }
+
+    private function getPlayersMoves($player) {
+        $count = 0;
+        foreach ($this->board as $row) {
+            foreach ($row as $field) {
+                if ($field === $player) {
+                    $count++;
+                }
+            }
+        }
+
+        return $count;
     }
 
     public function checkWin($player) {
