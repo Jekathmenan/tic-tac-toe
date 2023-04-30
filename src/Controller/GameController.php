@@ -73,21 +73,8 @@ class GameController extends AbstractController {
         } 
 
         if (!$this->gameFinished) {
+            $this->makeMove($x, $y, $this->currentPlayer);
             
-            if ($this->board[$x][$y] === '-') {
-                $this->board[$x][$y] = $this->currentPlayer;
-                $this->changePlayer(); 
-                $this->moves += 1;
-            }
-            
-            if ($player1Win = $this->checkWin($this->player1)) {
-                $this->gameFinished = true;
-                $this->winner = $this->player1;
-            } else if ($player2Win = $this->checkWin($this->player2)) {
-                $this->gameFinished = true;
-                $this->winner = $this->player2;                
-            }
-
             if ($this->moves < 9) {
                 $this->letAIPlay();
             }
