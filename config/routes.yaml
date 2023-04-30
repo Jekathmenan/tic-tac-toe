@@ -5,3 +5,11 @@ controllers:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+tic_tac_toe.home:
+    path: /tic-tac-toe
+    controller: App\Controller\TicTacToeController::index
+
+tic_tac_toe.game:
+    path: /tic-tac-toe/play
+    controller: App\Controller\TicTacToeController::play
